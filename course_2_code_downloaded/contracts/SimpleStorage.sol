@@ -1,4 +1,4 @@
-pragma solidity ^0.4.0; 
+pragma solidity >=0.4.22 <0.9.0; 
 // Imagine a big integer that the whole world could share
 contract SimpleStorage {
     uint storedData;
@@ -7,7 +7,7 @@ contract SimpleStorage {
         storedData = x;
     }
 
-    function get() constant public returns (uint)  {
+    function get() view public returns (uint)  {
         return storedData;
     }
     

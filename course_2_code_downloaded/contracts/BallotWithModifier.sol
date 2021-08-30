@@ -1,5 +1,5 @@
-pragma solidity ^0.4.0;
-contract Ballot {
+pragma solidity >=0.4.22 <0.9.0;
+contract Ballot2 {
 
     struct Voter {
         uint weight;
@@ -28,7 +28,7 @@ contract Ballot {
 
 
     /// Create a new ballot with $(_numProposals) different proposals.
-    function Ballot(uint8 _numProposals) public  {
+    constructor(uint8 _numProposals) public {
         chairperson = msg.sender;
         voters[chairperson].weight = 2; // weight is 2 for testing purposes
         proposals.length = _numProposals;
@@ -54,11 +54,11 @@ contract Ballot {
         sender.voted = true;
         sender.vote = toProposal;   
         proposals[toProposal].voteCount += sender.weight;
-        if (now > (startTime+ 30 seconds)) {stage = Stage.Done; votingCompleted();}        
+        if (block.timestamp > (startTime+ 30 seconds)) {stage = Stage.Done; emit votingCompleted();}        
         
     }
 
-    function winningProposal() public validStage(Stage.Done) constant returns (uint8 _winningProposal) {
+    function winningProposal() public validStage(Stage.Done) view returns (uint8 _winningProposal) {
        //if(stage != Stage.Done) {return;}
         uint256 winningVoteCount = 0;
         for (uint8 prop = 0; prop < proposals.length; prop++)
