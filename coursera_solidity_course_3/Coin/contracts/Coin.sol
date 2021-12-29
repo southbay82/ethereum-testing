@@ -13,12 +13,19 @@ contract Coin {
     // run only when the contract is created.
     constructor() public {
         minter = msg.sender;
+        balances[msg.sender] += 11;
     }
 
     function mint(address receiver, uint amount) public {
         if (msg.sender != minter)
           revert();
         balances[receiver] += amount;
+    }
+
+    function burn(address receiver, uint amount) public {
+        if (msg.sender != minter)
+          revert();
+        balances[receiver] -= amount;
     }
 
     function transfer(address receiver, uint amount) public {
