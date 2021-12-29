@@ -6,31 +6,34 @@ App = {
   currentAccount:null,
   transaction:0,
   flag:false,
+  local_ethereum_node_url:'http://127.0.0.1:7545',
   init: function() {
     return App.initWeb3();
   },
 
   initWeb3: function() {
         // Is there is an injected web3 instance?
-    if (typeof web3 !== 'undefined') {
+    if (typeof window.web3 !== 'undefined') {
       App.web3Provider = web3.currentProvider;
     } else {
       // If no injected web3 instance is detected, fallback to the TestRPC
-      App.web3Provider = new Web3.providers.HttpProvider('http://127.0.0.1:9545');
+      App.web3Provider = new Web3.providers.HttpProvider(App.local_ethereum_node_url);
     }
     web3 = new Web3(App.web3Provider);
     App.populateAddress();
+    //rcb - added due to 'invalid address' errors when interacting with SCT
+    window.ethereum.enable();
     return App.initContract();
   },
 
   initContract: function() {
       $.getJSON('Coin.json', function(data) {
     // Get the necessary contract artifact file and instantiate it with truffle-contract
-        var voteArtifact = data;
-        App.contracts.vote = TruffleContract(voteArtifact);
+        var coinArtifact = data;
+        App.contracts.coin = TruffleContract(coinArtifact);
 
     // Set the provider for our contract
-        App.contracts.vote.setProvider(App.web3Provider);
+        App.contracts.coin.setProvider(App.web3Provider);
         App.getMinter();
         App.currentAccount = web3.eth.coinbase;
         jQuery('#current_account').text("Current account : "+web3.eth.coinbase);
@@ -48,8 +51,9 @@ App = {
 
 
   populateAddress : function(){ 
- 
-    new Web3(new Web3.providers.HttpProvider('http://localhost:9545')).eth.getAccounts((err, accounts) => {
+    console.log('entered populateAddress()');
+    console.log('populateAddress():  eth node url = '+App.local_ethereum_node_url);
+    new Web3(new Web3.providers.HttpProvider(App.local_ethereum_node_url)).eth.getAccounts((err, accounts) => {
       jQuery.each(accounts,function(i){
         var optionElement = '<option value="'+accounts[i]+'">'+accounts[i]+'</option';
           jQuery('#enter_create_address').append(optionElement);
@@ -95,6 +99,7 @@ App = {
         else
           alert("Creation failed")
       }).catch( function(err){
+        alert('Exception Thrown in handleMint():'+err.message);
         console.log(err.message);
       })
   },
