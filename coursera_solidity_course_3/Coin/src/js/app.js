@@ -30,10 +30,10 @@ App = {
       $.getJSON('Coin.json', function(data) {
     // Get the necessary contract artifact file and instantiate it with truffle-contract
         var coinArtifact = data;
-        App.contracts.coin = TruffleContract(coinArtifact);
+        App.contracts.vote = TruffleContract(coinArtifact);
 
     // Set the provider for our contract
-        App.contracts.coin.setProvider(App.web3Provider);
+        App.contracts.vote.setProvider(App.web3Provider);
         App.getMinter();
         App.currentAccount = web3.eth.coinbase;
         jQuery('#current_account').text("Current account : "+web3.eth.coinbase);
