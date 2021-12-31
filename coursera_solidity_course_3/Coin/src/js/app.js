@@ -7,35 +7,73 @@ App = {
   transaction:0,
   flag:false,
   local_ethereum_node_url:'http://127.0.0.1:7545',
-  init: function() {
-    return App.initWeb3();
+
+  init: async function() {
+    return await App.initWeb3();
+    // original code
+    //return App.initWeb3();
   },
 
-  initWeb3: function() {
-        // Is there is an injected web3 instance?
-    if (typeof window.web3 !== 'undefined') {
-      App.web3Provider = web3.currentProvider;
-    } else {
-      // If no injected web3 instance is detected, fallback to the TestRPC
+
+  initWeb3: async function() {
+    // Modern dapp browsers...
+    if (window.ethereum) {
+      App.web3Provider = window.ethereum;
+      try {
+        // Request account access
+        await window.ethereum.request({ method: "eth_requestAccounts" });;
+      } catch (error) {
+        // User denied account access...
+        console.error("User denied account access")
+      }
+    }
+    // Legacy dapp browsers...
+    else if (window.web3) {
+      App.web3Provider = window.web3.currentProvider;
+    }
+    // If no injected web3 instance is detected, fall back to Ganache
+    else {
       App.web3Provider = new Web3.providers.HttpProvider(App.local_ethereum_node_url);
     }
     web3 = new Web3(App.web3Provider);
+
+    //custom for app
     App.populateAddress();
-    //rcb - added due to 'invalid address' errors when interacting with SCT
-    window.ethereum.enable();
+
     return App.initContract();
   },
+
+  // initWeb3: function() {
+  //       // Is there is an injected web3 instance?
+  //   if (typeof window.web3 !== 'undefined') {
+  //     App.web3Provider = web3.currentProvider;
+  //   } else {
+  //     // If no injected web3 instance is detected, fallback to the TestRPC
+  //     App.web3Provider = new Web3.providers.HttpProvider(App.local_ethereum_node_url);
+  //   }
+
+  //   web3 = new Web3(App.web3Provider);
+
+
+  //   App.populateAddress();
+  //   //rcb - added due to 'invalid address' errors when interacting with SCT
+  //   window.ethereum.enable();
+
+
+  //   return App.initContract();
+  // },
 
   initContract: function() {
       $.getJSON('Coin.json', function(data) {
     // Get the necessary contract artifact file and instantiate it with truffle-contract
         var coinArtifact = data;
-        App.contracts.vote = TruffleContract(coinArtifact);
+        App.contracts.Coin = TruffleContract(coinArtifact);
 
     // Set the provider for our contract
-        App.contracts.vote.setProvider(App.web3Provider);
+        App.contracts.Coin.setProvider(App.web3Provider);
         App.getMinter();
         App.currentAccount = web3.eth.coinbase;
+        
         jQuery('#current_account').text("Current account : "+web3.eth.coinbase);
         jQuery('#curr_account').text(web3.eth.coinbase);
         return App.bindEvents();
@@ -65,7 +103,7 @@ App = {
   },
 
   getMinter : function(){
-    App.contracts.vote.deployed().then(function(instance) {
+    App.contracts.Coin.deployed().then(function(instance) {
       return instance.minter();
     }).then(function(result) {
       App.minter = result;
@@ -89,7 +127,7 @@ App = {
         return false;
       }
       var coinInstance;
-      App.contracts.vote.deployed().then(function(instance) {
+      App.contracts.Coin.deployed().then(function(instance) {
         coinInstance = instance;
 
         return coinInstance.mint(addr,value);
@@ -108,7 +146,7 @@ App = {
   handleTransfer: function(addr,value) {
 
     if(addr == ""){
-      alert("Please select an adrdess");
+      alert("Please select an address");
       return false;
     }
     if(value == ""){
@@ -117,7 +155,7 @@ App = {
     }
 
     var coinInstance;
-    App.contracts.vote.deployed().then(function(instance) {
+    App.contracts.Coin.deployed().then(function(instance) {
       coinInstance = instance;
       return coinInstance.transfer(addr,value);
     }).then( function(result){
@@ -152,7 +190,7 @@ App = {
   },
 
   handleBalance : function(){
-    App.contracts.vote.deployed().then(function(instance) {
+    App.contracts.Coin.deployed().then(function(instance) {
       coinInstance = instance;
       return coinInstance.balances(App.currentAccount);
     }).then(function(result) {
