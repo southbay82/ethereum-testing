@@ -10,12 +10,10 @@ App = {
 
   init: async function() {
     return await App.initWeb3();
-    // original code
-    //return App.initWeb3();
-  },
+  }
 
 
-  initWeb3: async function() {
+  ,initWeb3: async function() {
     // Modern dapp browsers...
     if (window.ethereum) {
       App.web3Provider = window.ethereum;
@@ -37,62 +35,81 @@ App = {
     }
     web3 = new Web3(App.web3Provider);
 
-    //custom for app
+    //custom for app - currently triggering the metamask warning
     App.populateAddress();
 
     return App.initContract();
-  },
-
-  // initWeb3: function() {
-  //       // Is there is an injected web3 instance?
-  //   if (typeof window.web3 !== 'undefined') {
-  //     App.web3Provider = web3.currentProvider;
-  //   } else {
-  //     // If no injected web3 instance is detected, fallback to the TestRPC
-  //     App.web3Provider = new Web3.providers.HttpProvider(App.local_ethereum_node_url);
-  //   }
-
-  //   web3 = new Web3(App.web3Provider);
-
-
-  //   App.populateAddress();
-  //   //rcb - added due to 'invalid address' errors when interacting with SCT
-  //   window.ethereum.enable();
-
-
-  //   return App.initContract();
-  // },
-
-  initContract: function() {
-      $.getJSON('Coin.json', function(data) {
+  }
+  
+  ,initContract: function() {
+      $.getJSON('Coin.json', function(message) {
     // Get the necessary contract artifact file and instantiate it with truffle-contract
-        var coinArtifact = data;
+        var coinArtifact = message;
         App.contracts.Coin = TruffleContract(coinArtifact);
 
     // Set the provider for our contract
         App.contracts.Coin.setProvider(App.web3Provider);
         App.getMinter();
-        App.currentAccount = web3.eth.coinbase;
+
+        // this code triggers the metamask warning.
+        //App.currentAccount = web3.eth.coinbase;
+
+        currentAccount=null;
+
+        // web3.eth.getAccounts((error, accounts) => {
+        //   console.log(accounts);
+        // }).then(
+        //   function(value){
+        //   currentAccount = value;
+        //   },
+        //   function(error){
+        //     console.log('error getting accounts of wallet..: \n' + error);
+        //   }
+        // );
+
+        getAccountsPromise = web3.eth.getAccounts((error, accounts) => {
+          console.log('[debug] after promise...'
+          + '\naccounts array from wallet: '+accounts
+          +'\narray length: ' + accounts.length);
+        }).then(
+          function(value){
+            currentAccount = value[0];
+            App.currentAccount = currentAccount;
+            console.log('[debug] first wallet address == '+currentAccount)
+
+            jQuery('#current_account').text("Current account : "+ App.currentAccount);
+            jQuery('#curr_account').text(App.currentAccount);
+          },function(error){
+            currentAccount = value;
+            console.log('[debug] error == '+error)
+          }
         
-        jQuery('#current_account').text("Current account : "+web3.eth.coinbase);
-        jQuery('#curr_account').text(web3.eth.coinbase);
+        );
+
         return App.bindEvents();
       });
   },
+  setWalletAccounts: function(){
 
-  bindEvents: function() {
 
+  }
+   
+
+  ,bindEvents: function() {
+    
     $(document).on('click', '#create_money', function(){ App.handleMint(jQuery('#enter_create_address').val(),jQuery('#create_amount').val()); });
     $(document).on('click', '#send_money', function(){ App.handleTransfer(jQuery('#enter_send_address').val(),jQuery('#send_amount').val()); });
     $(document).on('click', '#balance', function(){ App.handleBalance(); });
-  },
+  }
 
 
-  populateAddress : function(){ 
-    console.log('entered populateAddress()');
-    console.log('populateAddress():  eth node url = '+App.local_ethereum_node_url);
+
+  ,populateAddress : function(){ 
+    console.log('[debug] populateAddress():  eth node url = '+App.local_ethereum_node_url);
+
     new Web3(new Web3.providers.HttpProvider(App.local_ethereum_node_url)).eth.getAccounts((err, accounts) => {
       jQuery.each(accounts,function(i){
+        console.log('[debug] Found Account in Blockchain: '+accounts[i]);
         var optionElement = '<option value="'+accounts[i]+'">'+accounts[i]+'</option';
           jQuery('#enter_create_address').append(optionElement);
           if(web3.eth.coinbase != accounts[i]){
@@ -100,9 +117,10 @@ App = {
           }
       });
     });
-  },
+  }
 
-  getMinter : function(){
+
+  ,getMinter : function(){
     App.contracts.Coin.deployed().then(function(instance) {
       return instance.minter();
     }).then(function(result) {
@@ -118,10 +136,10 @@ App = {
         jQuery('#balance_coin').css('width','30%');
       }
     })
-  },
+  }
+ 
 
-  handleMint: function(addr,value){
-
+  ,handleMint: function(addr,value){
       if(App.currentAccount != App.minter){
         alert("Not Authorised to create coin");
         return false;
@@ -130,7 +148,7 @@ App = {
       App.contracts.Coin.deployed().then(function(instance) {
         coinInstance = instance;
 
-        return coinInstance.mint(addr,value);
+        return coinInstance.mint(addr,value,{from: addr});
       }).then( function(result){
         if(result.receipt.status == '0x01')
           alert(value +" coins created successfully to "+addr);
@@ -140,10 +158,11 @@ App = {
         alert('Exception Thrown in handleMint():'+err.message);
         console.log(err.message);
       })
-  },
+  }
+ 
 
-
-  handleTransfer: function(addr,value) {
+  
+  ,handleTransfer: function(addr,value) {
 
     if(addr == ""){
       alert("Please select an address");
@@ -157,7 +176,7 @@ App = {
     var coinInstance;
     App.contracts.Coin.deployed().then(function(instance) {
       coinInstance = instance;
-      return coinInstance.transfer(addr,value);
+      return coinInstance.transfer(addr,value, {from: App.currentAccount});
     }).then( function(result){
 
       // Watching Events 
@@ -187,9 +206,13 @@ App = {
     }).catch( function(err){
       console.log(err.message);
     })
-  },
+  }
+ 
 
-  handleBalance : function(){
+  
+  ,handleBalance : function(){
+    
+    
     App.contracts.Coin.deployed().then(function(instance) {
       coinInstance = instance;
       return coinInstance.balances(App.currentAccount);
@@ -197,8 +220,8 @@ App = {
       jQuery('#display_balance').val(result.toNumber());
     })
   }
-};
 
+};
 
 $(function() {
   $(window).load(function() {

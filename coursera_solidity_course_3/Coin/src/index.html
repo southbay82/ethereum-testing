@@ -97,8 +97,15 @@
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/web3.min.js"></script>
-    <script src="js/truffle-contract.js"></script>
+    <!-- <script src="js/web3.min.js"></script> -->
+    <script src="web3/dist/web3.min.js"></script>
+
+    <!-- <script src="js/truffle-contract.js"></script> -->
+
+    <!-- latest truffle-contract producing this warning in the console
+    // You are accessing the MetaMask window.web3.currentProvider shim. This property is deprecated; use window.ethereum instead. For details, see: https://docs.metamask.io/guide/provider-migration.html#replacing-window-web3 -->
+    <script src="truffle-contract/dist/truffle-contract.js"></script>
+
     <script src="js/app.js"></script>
     <script>
 
