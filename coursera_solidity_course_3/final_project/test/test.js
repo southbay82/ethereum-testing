@@ -30,8 +30,7 @@ contract('AuctionContract', function (accounts) {
     pass itemId=0, count=6 as arguments
     HINT:     To make a function call from account 1 use {from: accounts[1]} as an extra argument
     ***********/
-    return /*<CODE HERE>*/
-    .then(function (result) {
+    return auctionInstance.bid(0,6,{from:accounts[1]}).then(function (result) {
       /*
       We are testing for a negative condition and hence this particular block will not have executed if our test case was correct. If this part is executed then we throw an error and catch the error to assert false
       */
@@ -44,12 +43,12 @@ contract('AuctionContract', function (accounts) {
         HINT:   Use assert(false) to assert false
                 Use assert(true) to assert true
         ***********/
-        /*<CODE HERE>*/
+        assert(false);
       } else {
         /**********
         TASK 3: assert the opposite here
         ***********/
-        /*<CODE HERE>*/
+        assert(true);
       }
     })
   });
@@ -59,7 +58,7 @@ contract('AuctionContract', function (accounts) {
     /**********
     TASK 4: Call revealWinners from account 1
     ***********/
-     return /*<CODE HERE>*/
+     return auctionInstance.revealWinners({from:accounts[1]})
      .then(function (instance) {
        /*
        We are testing for a negative condition and hence this particular block will not have executed if our test case was correct. If this part is executed then we throw an error and catch the error to assert false
@@ -72,12 +71,12 @@ contract('AuctionContract', function (accounts) {
          HINT:   Use assert(false) to assert false
                  Use assert(true) to assert true
          ***********/
-         /*<CODE HERE>*/
+         assert(false);
        } else {
          /**********
          TASK 6: assert the opposite here
          ***********/
-         /*<CODE HERE>*/
+         assert(true);
        }
      })
    })
@@ -87,45 +86,45 @@ contract('AuctionContract', function (accounts) {
     /**********
     TASK 7: Call register function from account 2
     ***********/
-    return /*<CODE HERE>*/
+    return auctionInstance.register({from:accounts[2]})
     .then(function(result) {
       /**********
       TASK 8: Call register function from account 3
       ***********/
-        return /*<CODE HERE>*/
+        return auctionInstance.register({from:accounts[3]})
     }).then(function() {
       /**********
       TASK 9: Call register function from account 4
       ***********/
-        return /*<CODE HERE>*/
+        return auctionInstance.register({from:accounts[4]})
     }).then(function() {
       /**********
       TASK 10: Call bid method from accounts[2] of Auction.sol using auctionInstance and
       pass itemId=0, count=5 as arguments
       ***********/
-        return /*<CODE HERE>*/
+        return auctionInstance.bid(0,5,{from:accounts[2]})
     }).then(function() {
       /**********
       TASK 11: Call bid method from accounts[3] of Auction.sol using auctionInstance and
       pass itemId=1, count=5 as arguments
       ***********/
-        return /*<CODE HERE>*/
+        return auctionInstance.bid(1,5,{from:accounts[3]})
     }).then(function() {
       /**********
       TASK 12: Call bid method from accounts[4] of Auction.sol using auctionInstance and
       pass itemId=2, count=5 as arguments
       ***********/
-        return /*<CODE HERE>*/
+        return auctionInstance.bid(2,5,{from:accounts[4]})
     }).then(function() {
       /**********
       TASK 13: Call revealWinners function from accounts[0]
       ***********/
-        return /*<CODE HERE>*/
+        return auctionInstance.revealWinners({from:accounts[0]})
     }).then(function() {
       /**********
       TASK 14: call winners function from accounts[0] to get the winner of item id 0
       ***********/
-        return /*<CODE HERE>*/
+        return auctionInstance.winners[0]
     }).then(function(result) {
       /**********
       TASK 15:  assert to see if the winner address is not the default address
@@ -133,11 +132,11 @@ contract('AuctionContract', function (accounts) {
                 Use notEqual method of assert
                 Parameters for notEqual : (result, default address , message);
       ***********/
-      /*<CODE HERE>*/
+      assert.notEqual(result,'0x0000000000000000000000000000000000000000','Not the default address!');
       /**********
       TASK 16: call winners function from accounts[0] to get the winner of item id 1
       ***********/
-      return /*<CODE HERE>*/
+      return auctionInstance.winners[1]
     }).then(function(result) {
       /**********
       TASK 17:  assert to see if the winner address is not the default address
@@ -145,11 +144,11 @@ contract('AuctionContract', function (accounts) {
                 Use notEqual method of assert
                 Parameters for notEqual : (result, default address , message);
       ***********/
-      /*<CODE HERE>*/
+      assert.notEqual(result,'0x0000000000000000000000000000000000000000','Not the default address!');
       /**********
       TASK 18: Call winners function from account 3 to get the winner of item id 2
       ***********/
-      return /*<CODE HERE>*/
+      return auctionInstance.winners[2]
     }).then(function(result) {
       /**********
       TASK 19:  assert to see if the winner address is not the default address
@@ -157,7 +156,7 @@ contract('AuctionContract', function (accounts) {
                 Use notEqual method of assert
                 Parameters for notEqual : (result, default address , message);
       ***********/
-      /*<CODE HERE>*/
+      assert.notEqual(result,'0x0000000000000000000000000000000000000000','Not the default address!');
     })
   });
 });
