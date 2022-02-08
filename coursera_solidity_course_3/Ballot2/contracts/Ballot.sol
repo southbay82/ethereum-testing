@@ -1,5 +1,4 @@
-pragma solidity ^0.4.17;
-
+pragma solidity >=0.5.16;
 contract Ballot {
 
     struct Voter {
@@ -23,7 +22,7 @@ contract Ballot {
     uint[4] public proposals;
 
     // Create a new ballot with 4 different proposals.
-    function Ballot() public {
+    constructor() public {
         chairperson = msg.sender;
         voters[chairperson].weight = 2;
     }
@@ -45,7 +44,7 @@ contract Ballot {
         proposals[toProposal] += sender.weight;
     }
 
-    function winningProposal() public constant returns (uint8 _winningProposal) {
+    function winningProposal() public returns (uint8 _winningProposal) {
         uint256 winningVoteCount = 0;
         for (uint8 prop = 0; prop < 4; prop++)
             if (proposals[prop] > winningVoteCount) {
@@ -54,7 +53,7 @@ contract Ballot {
             }
     }
 
-    function getCount() public constant returns (uint[4]) {
+    function getCount() public view returns (uint[4] memory) {
         return proposals;
     }
 }
