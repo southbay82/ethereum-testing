@@ -1,4 +1,4 @@
-pragma solidity ^0.4.17;
+pragma solidity >=0.5.16;
 
 //^0.4.17;
 
@@ -14,7 +14,7 @@ contract Coin {
 
     // This is the constructor whose code is
     // run only when the contract is created.
-    function Coin() public {
+    constructor() public {
         minter = msg.sender;
         balances[msg.sender] += 10;
     }
