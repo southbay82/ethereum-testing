@@ -1,7 +1,7 @@
 # Coursera Ethereum Development
 
 The following coursera named directories contain work to pass courses provided by Coursera.
-Much of the work was initial done to get the code to compile on modern versions of solidity, truffle, and correct old NPM libraries since the original source was several years old. 
+Much of the work was initially done to get the code to compile on modern versions of solidity, truffle, and correct old NPM libraries since the original source was several years old. 
 
 Great learning experience to get a handle on the the development tools, including ganache, truffle, npm, and metamask. 
 
