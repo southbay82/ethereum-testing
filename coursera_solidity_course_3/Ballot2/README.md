@@ -2,6 +2,13 @@
 
 Built a voting ballot application with 4 NFL Teams such that there is a chairperson who is authorized to register voters. Voters have the permission to vote only after the registration process.
 
+Compiles with the following environment.
+
+Truffle v5.4.3 (core: 5.4.3)
+Solidity v0.5.16 (solc-js)
+Node v16.6.1
+Web3.js v1.5.0
+
 <small> The smart contract used is based on the example in solidity docs </small>
 
 
@@ -19,8 +26,8 @@ Built a voting ballot application with 4 NFL Teams such that there is a chairper
 
 ## Prerequisite
 1. NodeJs
-2. Metamask (3.14.1)
-3. Truffle (v4.0.4)
+2. Metamask (10.8.1)
+3. Truffle (v5.4.3)
 
 ## Instruction for truffle testing
 1. Clone the repository to a local folder
@@ -52,7 +59,7 @@ This should print the following in the console
 1. Now to start the nodeJs server execute npm run dev
 2. This should start the front end of the application at localhost:3000
 3. Open Metamask in your chrome browser and enter the key phrase you got after executing truffle develop
-4. Now connect to private network using http://127.0.0.1:9545 and create as many accounts as you want
+4. Now connect to private network using http://127.0.0.1:7545 and create as many accounts as you want
 5. Now you should be in the first account in the metamask and register all other accounts
 6. Now to cast vote from the account 2 change the account in Metamask from account 1 to account 2 and then click vote.
 7. To vote from any account switch to that account in metamask and then click vote

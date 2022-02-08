@@ -1,7 +1,5 @@
 pragma solidity >=0.5.16;
 
-//^0.4.17;
-
 contract Coin {
     // The keyword "public" makes those variables
     // readable from outside.
