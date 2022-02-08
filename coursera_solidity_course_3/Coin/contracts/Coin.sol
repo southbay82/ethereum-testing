@@ -1,4 +1,7 @@
-pragma solidity ^0.5.16;
+pragma solidity ^0.4.17;
+
+//^0.4.17;
+
 contract Coin {
     // The keyword "public" makes those variables
     // readable from outside.
@@ -11,9 +14,9 @@ contract Coin {
 
     // This is the constructor whose code is
     // run only when the contract is created.
-    constructor() public {
+    function Coin() public {
         minter = msg.sender;
-        balances[msg.sender] += 11;
+        balances[msg.sender] += 10;
     }
 
     function mint(address receiver, uint amount) public {
