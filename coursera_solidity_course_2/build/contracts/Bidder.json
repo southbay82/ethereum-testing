@@ -1,0 +1,442 @@
+{
+  "contractName": "Bidder",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "bidAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "eligible",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"bidAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"eligible\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/BidderData.sol\":\"Bidder\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/BidderData.sol\":{\"keccak256\":\"0x603f7fee25cf39c64ab065863a6bc5f113be7ec7a1ec124b35cd669dbb5dd435\",\"urls\":[\"bzz-raw://a39bb62dc48343c1644a2d48d10377b5569a7edc45c411ffb403925343d36781\",\"dweb:/ipfs/Qmb95wA8E6JAuijRS5uGCKSbi5cswgkGcBKdZWWTpcZnC7\"]}},\"version\":1}",
+  "bytecode": "0x6080604052614e2060015534801561001657600080fd5b506101f5806100266000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c806306fdde0314610046578063aec2393b146100c9578063d832d92f146100e7575b600080fd5b61004e610109565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561008e578082015181840152602081019050610073565b50505050905090810190601f1680156100bb5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6100d16101a7565b6040518082815260200191505060405180910390f35b6100ef6101ad565b604051808215151515815260200191505060405180910390f35b60008054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561019f5780601f106101745761010080835404028352916020019161019f565b820191906000526020600020905b81548152906001019060200180831161018257829003601f168201915b505050505081565b60015481565b600260009054906101000a900460ff168156fea265627a7a7231582045835b14b65ad791b644c317c99753c95959e4a09476e927045a04b99193efba64736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c806306fdde0314610046578063aec2393b146100c9578063d832d92f146100e7575b600080fd5b61004e610109565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561008e578082015181840152602081019050610073565b50505050905090810190601f1680156100bb5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6100d16101a7565b6040518082815260200191505060405180910390f35b6100ef6101ad565b604051808215151515815260200191505060405180910390f35b60008054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561019f5780601f106101745761010080835404028352916020019161019f565b820191906000526020600020905b81548152906001019060200180831161018257829003601f168201915b505050505081565b60015481565b600260009054906101000a900460ff168156fea265627a7a7231582045835b14b65ad791b644c317c99753c95959e4a09476e927045a04b99193efba64736f6c63430005100032",
+  "sourceMap": "37:167:3:-;;;117:5;93:29;;37:167;8:9:-1;5:2;;;30:1;27;20:12;5:2;37:167:3;;;;;;;",
+  "deployedSourceMap": "37:167:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;37:167:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;67:18;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;67:18:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;93:29;;;:::i;:::-;;;;;;;;;;;;;;;;;;;130:21;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;67:18;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;93:29::-;;;;:::o;130:21::-;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity >=0.4.22 <0.9.0; \r\n\r\ncontract Bidder {\r\n    \r\n     string public name;\r\n     uint public bidAmount = 20000;\r\n     bool public  eligible;\r\n     uint constant minBid = 1000;\r\n     \r\n     \r\n}",
+  "sourcePath": "/Users/ryanbehan/build/ethereum/coursera/ethereum-testing/course_2_code_downloaded/contracts/BidderData.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/BidderData.sol",
+    "exportedSymbols": {
+      "Bidder": [
+        648
+      ]
+    },
+    "id": 649,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 637,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:3"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 648,
+        "linearizedBaseContracts": [
+          648
+        ],
+        "name": "Bidder",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 639,
+            "name": "name",
+            "nodeType": "VariableDeclaration",
+            "scope": 648,
+            "src": "67:18:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 638,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "67:6:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 642,
+            "name": "bidAmount",
+            "nodeType": "VariableDeclaration",
+            "scope": 648,
+            "src": "93:29:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 640,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "93:4:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "3230303030",
+              "id": 641,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "117:5:3",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_20000_by_1",
+                "typeString": "int_const 20000"
+              },
+              "value": "20000"
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 644,
+            "name": "eligible",
+            "nodeType": "VariableDeclaration",
+            "scope": 648,
+            "src": "130:21:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bool",
+              "typeString": "bool"
+            },
+            "typeName": {
+              "id": 643,
+              "name": "bool",
+              "nodeType": "ElementaryTypeName",
+              "src": "130:4:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bool",
+                "typeString": "bool"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": true,
+            "id": 647,
+            "name": "minBid",
+            "nodeType": "VariableDeclaration",
+            "scope": 648,
+            "src": "159:27:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 645,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "159:4:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "31303030",
+              "id": 646,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "182:4:3",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_1000_by_1",
+                "typeString": "int_const 1000"
+              },
+              "value": "1000"
+            },
+            "visibility": "internal"
+          }
+        ],
+        "scope": 649,
+        "src": "37:167:3"
+      }
+    ],
+    "src": "0:204:3"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/BidderData.sol",
+      "exportedSymbols": {
+        "Bidder": [
+          648
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".22",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 637,
+        "name": "PragmaDirective",
+        "src": "0:32:3"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            648
+          ],
+          "name": "Bidder",
+          "scope": 649
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "name",
+              "scope": 648,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "string",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "string",
+                  "type": "string"
+                },
+                "id": 638,
+                "name": "ElementaryTypeName",
+                "src": "67:6:3"
+              }
+            ],
+            "id": 639,
+            "name": "VariableDeclaration",
+            "src": "67:18:3"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "bidAmount",
+              "scope": 648,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint",
+                  "type": "uint256"
+                },
+                "id": 640,
+                "name": "ElementaryTypeName",
+                "src": "93:4:3"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "3230303030",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "number",
+                  "type": "int_const 20000",
+                  "value": "20000"
+                },
+                "id": 641,
+                "name": "Literal",
+                "src": "117:5:3"
+              }
+            ],
+            "id": 642,
+            "name": "VariableDeclaration",
+            "src": "93:29:3"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "eligible",
+              "scope": 648,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "bool",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "bool",
+                  "type": "bool"
+                },
+                "id": 643,
+                "name": "ElementaryTypeName",
+                "src": "130:4:3"
+              }
+            ],
+            "id": 644,
+            "name": "VariableDeclaration",
+            "src": "130:21:3"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "name": "minBid",
+              "scope": 648,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint",
+                  "type": "uint256"
+                },
+                "id": 645,
+                "name": "ElementaryTypeName",
+                "src": "159:4:3"
+              },
+              {
+                "attributes": {
+                  "argumentTypes": null,
+                  "hexvalue": "31303030",
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "lValueRequested": false,
+                  "subdenomination": null,
+                  "token": "number",
+                  "type": "int_const 1000",
+                  "value": "1000"
+                },
+                "id": 646,
+                "name": "Literal",
+                "src": "182:4:3"
+              }
+            ],
+            "id": 647,
+            "name": "VariableDeclaration",
+            "src": "159:27:3"
+          }
+        ],
+        "id": 648,
+        "name": "ContractDefinition",
+        "src": "37:167:3"
+      }
+    ],
+    "id": 649,
+    "name": "SourceUnit",
+    "src": "0:204:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.2",
+  "updatedAt": "2021-08-30T01:58:38.254Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
